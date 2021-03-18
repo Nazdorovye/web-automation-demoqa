@@ -5,6 +5,7 @@ Feature: DemoQA - Widgets
     And   I click "Widgets"
     Then  I am on the "Widgets" page
 
+  # @run
   Scenario: Accordian
     When I click "Accordian option"
     And  I click "Section two heading"
@@ -14,6 +15,7 @@ Feature: DemoQA - Widgets
     When I click "Section one heading"
     Then "Content" should contain "It was popularised in the 1960s with the release of Letraset sheets"
 
+  # @run
   Scenario: Auto Complete
     When I click "Auto complete option"
     And  I set "Multiple color field" to "Red"
@@ -25,6 +27,7 @@ Feature: DemoQA - Widgets
     When I set "Single color field" to "Purple"
     Then "Single color container" should contain "Purple"
 
+  @run
   Scenario: Date Picker
     When I click "Date Picker option"
     And  I click "Select date"

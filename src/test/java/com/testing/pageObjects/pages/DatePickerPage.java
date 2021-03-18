@@ -10,10 +10,11 @@ import net.thucydides.core.annotations.DefaultUrl;
 @DefaultUrl("/date-picker")
 public class DatePickerPage extends WidgetsPage{
   // Locators ----------------------------------------------------------------------------------------------------------
-  public static By DATE_PICKER_TITLE;
-  public static By SELECT_DATE;
-  public static By SELECT_DATE_AND_TIME;
+  public static By DATE_PICKER_TITLE = text("Date Picker");
+  public static By SELECT_DATE = css("input[id=datePickerMonthYearInput]");
+  public static By SELECT_DATE_AND_TIME = css("input[id=dateAndTimePickerInput]");;
   public static By MONTH_ALTERNATIVE_PICKER = css("[class*='react-datepicker__month-dropdown']");
+  public static By CURRENT_MONTH_DATES = css("div[class=react-datepicker__month]>div>div[role=option]");
   // Public methods ----------------------------------------------------------------------------------------------------
   public void waitForPageToLoad() {
     getElement(DATE_PICKER_TITLE).waitUntilPresent();

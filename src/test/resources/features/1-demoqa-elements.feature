@@ -5,7 +5,7 @@ Feature: DemoQA - Elements page
     And   I click "Elements"
     Then  I am on the "Elements" page
 
-  @run
+  # @run
   Scenario: Text Box
     When I click "Text Box option"
     And  I set "Full Name field" to "Donald Biden"
@@ -17,6 +17,7 @@ Feature: DemoQA - Elements page
       | Name         | Email                  | Current Address                                     | Permanent Address                    |
       | Donald Biden | example@testdevlab.com | Liljerum Grenadjärtorpet 24, Undrom, 880 10, Sweden | Djursbo 70, Landeryd, 310 82, Sweden |
 
+  # @run
   Scenario: Check Box
     When I click "Check Box option"
     And  I click "Expand button"
@@ -31,6 +32,7 @@ Feature: DemoQA - Elements page
       | classified |
       | excelFile  |
 
+  # @run
   Scenario: Radio button
     When I click "Radio Button option"
     And  I click "Yes button"
@@ -39,6 +41,7 @@ Feature: DemoQA - Elements page
     Then "Selected result" should contain "Impressive"
     And  "No button" should be "disabled"
 
+  # @run
   Scenario: Web Tables
     When I click "Web Tables option"
     And  I click "Add button"
@@ -54,6 +57,7 @@ Feature: DemoQA - Elements page
       | First name | Last name | Age | Email                  | Salary | Department |
       | Joe        | Trump     | 53  | example@testdevlab.com | 10000  | Security   |
 
+  # @run
   Scenario: Buttons
     When I click "Buttons option"
     And  I double click "Double click me button"

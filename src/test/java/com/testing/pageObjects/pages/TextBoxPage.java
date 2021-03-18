@@ -23,6 +23,7 @@ public class TextBoxPage extends ElementsPage {
   public static By EMAIL = css("p#email");
   public static By CURRENT_ADDRESS = css("p#currentAddress");
   public static By PERMANENT_ADDRESS = css("p#permanentAddress");
+  public static By SUBMIT_BUTTON = css("button[id=submit]");
   // Public methods ----------------------------------------------------------------------------------------------------
   public void waitForPageToLoad() {
     getElement(TEXT_BOX_TITLE).waitUntilPresent();

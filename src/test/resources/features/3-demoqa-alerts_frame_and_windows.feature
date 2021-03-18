@@ -5,41 +5,48 @@ Feature: DemoQA - Alerts, Frame And Windows page
     And   I click "Alerts frame and windows"
     Then  I am on the "Alerts frame and windows" page
 
+  # @run
   Scenario: Browser windows - new tab
     When I click "Browser Windows option"
     And  I click "New tab button"
     And  I switch to new tab
     Then "Sample title" should contain "This is a sample page"
 
+  # @run
   Scenario: Browser windows - new window
     When I click "Browser Windows option"
     And  I click "New window button"
     And  I switch to new tab
     Then "Sample title" should contain "This is a sample page"
 
+  # @run
   Scenario: Alerts - see alert
     When I click "Alerts option"
     And  I click "Alert button"
     Then Alert window should contain "You clicked a button"
 
+  # @run
   Scenario: Alerts - see alert after 5 seconds
     When I click "Alerts option"
     And  I click "Timer Alert button"
     And  I wait for "6" seconds
     Then Alert window should contain "This alert appeared after 5 seconds"
 
+  # @run
   Scenario: Alerts - confirm alert - Ok
     When I click "Alerts option"
     And  I click "Confirm Alert button"
     And  I accept alert window
     Then "Confirm Result" should contain "You selected Ok"
 
+  # @run
   Scenario: Alerts - confirm alert - Cancel
     When I click "Alerts option"
     And  I click "Confirm Alert button"
     And  I dismiss alert window
     Then "Confirm Result" should contain "You selected Cancel"
 
+  # @run
   Scenario: Alerts - prompt
     When I click "Alerts option"
     And  I click "Prompt Alert button"
