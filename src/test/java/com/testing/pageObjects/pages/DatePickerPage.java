@@ -9,13 +9,13 @@ import net.thucydides.core.annotations.DefaultUrl;
 
 @DefaultUrl("/date-picker")
 public class DatePickerPage extends WidgetsPage{
-  // Locators ----------------------------------------------------------------------------------------------------------
+  // Locators ------------------------------------------------------------------------------------
   public static By DATE_PICKER_TITLE = text("Date Picker");
   public static By SELECT_DATE = css("input[id=datePickerMonthYearInput]");
   public static By SELECT_DATE_AND_TIME = css("input[id=dateAndTimePickerInput]");;
   public static By MONTH_ALTERNATIVE_PICKER = css("[class*='react-datepicker__month-dropdown']");
-  public static By CURRENT_MONTH_DATES = css("div[class=react-datepicker__month]>div>div[role=option]");
-  // Public methods ----------------------------------------------------------------------------------------------------
+  public static By CURRENT_MONTH_DATES = css("div[class=react-datepicker__month]>div>div[role=option]:not([class*='react-datepicker__day--outside-month'])");
+  // Public methods -------------------------------------------------------------------------------
   public void waitForPageToLoad() {
     getElement(DATE_PICKER_TITLE).waitUntilPresent();
     logWeAreOnPage();
@@ -54,7 +54,10 @@ public class DatePickerPage extends WidgetsPage{
   public Boolean validateSelectDateValue(DataTable data){
     for (Map<String, String> map : dataToMap(data)) {
       for (String key : map.keySet()) {
-        if(snakify(key).equals("VALUE") && getElement(SELECT_DATE).getValue().equals(map.get(key))) return true;
+        info(getElement(SELECT_DATE).getValue());
+        info(map.get(key));
+        if(snakify(key).equals("VALUE") && getElement(SELECT_DATE).getValue().equals(map.get(key))) 
+          return true;
       } 
     }
     return false;
@@ -63,7 +66,9 @@ public class DatePickerPage extends WidgetsPage{
   public Boolean validateSelectDateAndTimeValue(DataTable data){
     for (Map<String, String> map : dataToMap(data)) {
       for (String key : map.keySet()) {
-        if(snakify(key).equals("VALUE") && getElement(SELECT_DATE_AND_TIME).getValue().equals(map.get(key))) return true;
+        if(snakify(key).equals("VALUE") 
+            && getElement(SELECT_DATE_AND_TIME).getValue().equals(map.get(key))) 
+          return true;
       } 
     }
     return false;
