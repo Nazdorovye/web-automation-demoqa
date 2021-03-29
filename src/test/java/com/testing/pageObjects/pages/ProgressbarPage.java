@@ -27,7 +27,7 @@ public class ProgressbarPage extends WidgetsPage{
         getElement(START_STOP_BUTTON).click();
 
         waitForCondition()
-          .pollingEvery(Duration.ofMillis(16)) // try to poll @60Hz
+          .pollingEvery(Duration.ofMillis(1))
           .until(ExpectedConditions.attributeToBe(PROGRESS_BAR, "aria-valuenow", value));
 
         getElement(START_STOP_BUTTON).click();
