@@ -15,9 +15,13 @@ import static support.StringEditing.snakify;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.text.WordUtils;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
 public class DemoQASteps {
   private final PageContainer PAGE_CONTAINER;
@@ -216,6 +220,46 @@ public class DemoQASteps {
       e.printStackTrace();
     }
   }
+
+  // Custom - Stanislavs Vjazovcevs @ 31.03.2021
+  //-------------------------------------------------------------------------------------------------------------------
+  public void httpResponse(String elementName, boolean expectValid, boolean link) {
+    try {
+      URL url = new URL(getCurrentPage().getElement(snakify(elementName)).getAttribute(link ? "href" : "src"));
+
+      HttpURLConnection httpUC = (HttpURLConnection)url.openConnection();
+      httpUC.setConnectTimeout(5000);
+      httpUC.connect();
+
+      if ((expectValid && httpUC.getResponseCode() >= 400) || (!expectValid && httpUC.getResponseCode() < 400)) {
+        info("Response code returned " + httpUC.getResponseCode() + ". Expected " + ((expectValid) ? "" : "non-") + "valid code.");
+        fail("Response code validation failed");
+      }
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail();
+    }
+  }
+
+  public void observeImage(String elementName, boolean can) {
+    WebElement img = getCurrentPage().getElement(snakify(elementName));
+
+    try {
+      // Snatched from here (I don't do ̶j̶s̶  drugs): https://www.toolsqa.com/selenium-webdriver/find-broken-links-in-selenium/
+      if ( (Boolean) ((JavascriptExecutor) getCurrentPage().getDriver()).executeScript(
+          "return (typeof arguments[0].naturalWidth !=\"undefined\" && arguments[0].naturalWidth > 0);", img) != can ) 
+      {
+        info("Image is" + (can ? " not" : "") + " visible, expected otherwise"); 
+        fail("Image observability validation failed");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail();
+    }
+  }
+
+
   // Auxillary
   // -------------------------------------------------------------------------------------------------------------------
   public void undefinedMethodFailure(String methodName){

@@ -110,4 +110,36 @@ public class DemoQADefinitions {
   public void i_hover_over(String elementName) {
     demoQASteps.hoverOver(elementName);
   }
+
+  // Custom steps - Stanislavs Vjazovcevs @ 31.03.2021
+
+  @Then("I receive valid HTTP response on image {string}")
+  public void i_receive_valid_http_response_code_on_image(String elementName) {
+    demoQASteps.httpResponse(elementName, true, false);
+  }
+
+  @Then("I receive non valid HTTP response on image {string}")
+  public void i_receive_non_valid_http_response_code_on_image(String elementName) {
+    demoQASteps.httpResponse(elementName, false, false);
+  }
+
+  @Then("I receive valid HTTP response on link {string}")
+  public void i_receive_valid_http_response_code_on_link(String elementName) {
+    demoQASteps.httpResponse(elementName, true, true);
+  }
+
+  @Then("I receive non valid HTTP response on link {string}")
+  public void i_receive_non_valid_http_response_code_on_link(String elementName) {
+    demoQASteps.httpResponse(elementName, false, true);
+  }
+
+  @Then("I can observe image {string}") 
+  public void i_can_observe_image(String elementName) {
+    demoQASteps.observeImage(elementName, true);
+  }
+
+  @Then("I can not observe image {string}") 
+  public void i_can_not_observe_image(String elementName) {
+    demoQASteps.observeImage(elementName, false);
+  }
 }
