@@ -40,6 +40,7 @@ public class PageContainer{
     pages.put("TOOL_TIPS_PAGE", new ToolTipsPage());
     pages.put("MENU_PAGE", new MenuPage());
     pages.put("SELECT_MENU", new SelectMenuPage());
+    pages.put("BROKEN_LINKS-IMAGES_PAGE", new BrokenLinksImagesPage());
   }
 
   public BasePage getPage(String page){
